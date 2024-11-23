@@ -92,8 +92,14 @@ function validateData(course, group) {
     });
 }
 function calculateScores(assignments, submissions) {
-const result = {};
-const totalWeight = assignments.reduce((sum, a) => sum + a.points_possible, 0);
+  // Create an object to store scores for each learner
+  const result = {};
+
+  // Calculate the total weight (sum of points possible for all assignments)
+  let totalWeight = 0;
+  for (const assignment of assignments) {
+    totalWeight += assignment.points_possible;
+  }
 
 submissions.forEach((submission) => {
   const { 
