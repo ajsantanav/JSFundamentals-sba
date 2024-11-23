@@ -1,6 +1,6 @@
 
-
-// The provided course information.
+let validDates = [];
+const validDueDates = [];
 const CourseInfo = {
     id: 451,
     name: "Introduction to JavaScript"
@@ -77,28 +77,104 @@ const CourseInfo = {
       }
     }
   ];
-  
-  function getLearnerData(course, ag, submissions) {
-    // here, we would process this data to achieve the desired result.
-    const result = [
-      {
-        id: 125,
-        avg: 0.985, // (47 + 150) / (50 + 150)
-        1: 0.94, // 47 / 50
-        2: 1.0 // 150 / 150
-      },
-      {
-        id: 132,
-        avg: 0.82, // (39 + 125) / (50 + 150)
-        1: 0.78, // 39 / 50
-        2: 0.833 // late: (140 - 15) / 150
+
+  function storeData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
+    if(!CourseInfo.id === AssignmentGroup.course_id) {
+      throw new Error("Invalid input: AssignmentGroup does not belong to the course.");
+    }
+    const assignments = AssignmentGroup.assignments;
+    const submissions = {};
+    const learner = {}
+    console.log(assignment);
+
+    for(const submission of LearnerSubmissions) {
+      const learner = submission.learner_id;
+      const assignmentId = submission.assignment_id;
+      const assignment = assignments.find((assign) => assign.id === assignmentId);
+
+      if(!assignment || ) {
+
       }
-    ];
-  
-    return result;
+    }
+  }
+
+
+ 
+
+  function isValidSubmission(submission) {
+    
+  }
+
+  function submitValidation(AssignmentGroup, LearnerSubmissions){
+
+  }
+
+  function validDate(AssignmentGroup, LearnerSubmissions) {
+    const currDate = new Date();
+
+    const currentAssingments = AssignmentGroup.assignments.filter((assignment) => {
+        const dueDate = new Date(assignment.due_at);
+        return  dueDate <= currDate;
+    });
+
+    // AssignmentGroup.assignments.forEach((assignment)=>{
+    //   const dueDate = new Date(assignment.due_at);
+    //   if(dueDate > currDate) {
+    //     // console.log(`Assingment id: ${assignment.id}, Due date: ${assignment.due_at} is not valid.`);
+       
+    //   }else {
+    //     validDueDates.push(assignment.due_at);
+    //     // console.log(`${validDueDates}`);
+    //   }
+    // })
+    
+  }
+
+  function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
+    // here, we would process this data to achieve the desired result.
+    // const result = [
+    //   {
+    //     id: 125,
+    //     avg: 0.985, // (47 + 150) / (50 + 150)
+    //     1: 0.94, // 47 / 50
+    //     2: 1.0 // 150 / 150
+    //   },
+    //   {
+    //     id: 132,
+    //     avg: 0.82, // (39 + 125) / (50 + 150)
+    //     1: 0.78, // 39 / 50
+    //     2: 0.833 // late: (140 - 15) / 150
+    //   }
+    // ];
+  // try {
+  //   isValidId(CourseInfo, AssignmentGroup);
+  //   // validAssigment(AssignmentGroup)
+  // } catch (error) {
+  //   console.error(error.message);
+  // }
+
+  // validDate(AssignmentGroup, LearnerSubmissions);
+  // storeData(CourseInfo,AssignmentGroup,LearnerSubmissions);
 }
   
 const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
   
 console.log(result);
 
+   /*  for (const assignment of ag.assignments) {
+        console.log(`Assignment ID: ${assignment.id}`);
+        console.log(`Name: ${assignment.name}`);
+        console.log(`Due Date: ${assignment.due_at}`);
+        console.log(`Points Possible: ${assignment.points_possible}`);
+        console.log("\n");
+      }
+      for (const learner of submissions) {
+        console.log(`Learner ID: ${learner.learner_id}`);
+        console.log(`Assignment ID: ${learner.assignment_id}`);
+        console.log(`Submitted At: ${learner.submission.submitted_at}`);
+        console.log(`Score: ${learner.submission.score}`);
+        console.log("\n");
+      }
+
+      //Date
+*/
