@@ -125,28 +125,6 @@ submissions.forEach((submission) => {
 return result;
 }
 
-// function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
-
-//     try {
-//       // Validate input data
-//       validateData(CourseInfo, AssignmentGroup);
-
-//       // Process submissions and calculate scores
-//       const scores = calculateScores(AssignmentGroup.assignments, LearnerSubmissions);
-
-//       // Format results as specified
-//       return Object.values(scores).map((learner) => {
-//         const formattedLearner = { id: learner.id, avg: learner.avg };
-//         Object.entries(learner.scores).forEach(([assignmentId, score]) => {
-//           formattedLearner[assignmentId] = score;
-//         });
-//         return formattedLearner;
-//       });
-//     } catch (error) {
-//       console.error("Error processing learner data:", error.message);
-//       return [];
-//     }
-//   }
 function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
 try {
   validateData(CourseInfo, AssignmentGroup);
