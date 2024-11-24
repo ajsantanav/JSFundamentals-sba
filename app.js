@@ -107,12 +107,14 @@ function calculateScores(assignments, submissions) {
   } = submission;
 
   const assignment = assignments.find((a) => a.id === assignment_id);
-  if (!assignment) return; // Ignore submissions for nonexistent assignments
+  if (!assignment) {
+    return 
+  }; // Ignore submissions for nonexistent assignments
 
-    const dueDate = new Date(assignment.due_at);
-    const submittedDate = new Date(sub.submitted_at);
+  const dueDate = new Date(assignment.due_at);
+  const submittedDate = new Date(sub.submitted_at);
     if (submittedDate > dueDate) {
-    sub.score = Math.max(0, sub.score - assignment.points_possible * 0.1); // Apply late penalty
+    sub.score = sub.score - assignment.points_possible * 0.1;
   }
 
 if (!result[learner_id]) {
@@ -133,10 +135,10 @@ function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
 try {
 validateData(CourseInfo, AssignmentGroup);
 
-// Step 2: Process submissions and calculate scores
+
 const scores = calculateScores(AssignmentGroup.assignments, LearnerSubmissions);
 
-// Step 3: Create an array to store formatted results
+
 const arrResults = [];
 
 // Step 4: Iterate over the scores object
